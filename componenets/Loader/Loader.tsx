@@ -1,0 +1,58 @@
+import './Loader.css';
+
+export default function Loader() {
+  return (
+    <>
+      <div className='loader-container'>
+        <img
+          src='/jasmim-favicon.png'
+          alt='loader animation'
+          className='loader'
+        />
+      </div>
+      <style jsx>
+        {`
+          .loader-container {
+            overflow: hidden;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+
+          .loader-container .loader {
+            transform: scale(0.5);
+          }
+
+          .loader {
+            -webkit-animation: sk-scaleout 2s infinite ease-in-out;
+            animation: sk-scaleout 2s infinite ease-in-out;
+          }
+
+          @-webkit-keyframes sk-scaleout {
+            0% {
+              -webkit-transform: scale(0);
+            }
+            100% {
+              -webkit-transform: scale(1);
+              opacity: 0;
+            }
+          }
+
+          @keyframes sk-scaleout {
+            0% {
+              -webkit-transform: scale(0);
+              transform: scale(0);
+            }
+            100% {
+              -webkit-transform: scale(1);
+              transform: scale(1);
+              opacity: 0;
+            }
+          }
+        `}
+      </style>
+    </>
+  );
+}

@@ -1,0 +1,12 @@
+.footer_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+}
+
+.social_icon {
+  margin: 0px 1rem 0;
+  color: #7e7e7e;
+  font-size: 1.7rem;
+}

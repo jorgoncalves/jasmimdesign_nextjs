@@ -33,9 +33,7 @@ export default function Layout({ children, image }: Props) {
         <Navbar />
       </header>
       <div className={styles.layoutContainer}>{children}</div>
-      <footer className={styles.footer}>
-        <Footer />
-      </footer>
+      <Footer />
     </div>
   );
 }

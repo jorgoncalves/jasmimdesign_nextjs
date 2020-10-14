@@ -32,19 +32,18 @@ export default function sobre_nos({ image, content }: Props) {
     <>
       <Layout image={image}>
         <div className={styles.container}>
-
-        </div>
-        <img
-          className={styles.imageEquipa}
-          src={`${content.teamImage.fields.file.url}`}
-          alt=''
-        />
-        <div className={styles.content_container}>
-          <div className={styles.content}>
-            <span>{content.content}</span>
-          </div>
-          <div className={styles.content_signature}>
-            {content.contentSignature}
+          <img
+            className={styles.imageEquipa}
+            src={`${content.teamImage.fields.file.url}`}
+            alt=''
+          />
+          <div className={styles.content_container}>
+            <div className={styles.content}>
+              <span>{content.content}</span>
+            </div>
+            <div className={styles.content_signature}>
+              {content.contentSignature}
+            </div>
           </div>
         </div>
       </Layout>

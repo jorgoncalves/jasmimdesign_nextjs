@@ -25,3 +25,9 @@
   color: #a9c7ca;
   text-align: center;
 }
+
+@media screen and (max-width: 600px){
+  .container{
+    width: 85%;
+  }
+}

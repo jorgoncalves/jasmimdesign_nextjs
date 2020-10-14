@@ -31,6 +31,9 @@ export default function sobre_nos({ image, content }: Props) {
   return (
     <>
       <Layout image={image}>
+        <div className={styles.container}>
+
+        </div>
         <img
           className={styles.imageEquipa}
           src={`${content.teamImage.fields.file.url}`}

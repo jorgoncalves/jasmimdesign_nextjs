@@ -1,33 +1,16 @@
 import { GetStaticProps } from 'next';
 import { fechtEntry, fechtAsset } from '../libs/api';
 
-import { ContentfullAsset } from '../interfaces/Contentfull';
+import {
+  ContentfullAsset,
+  ContentfullSobreNos
+} from '../interfaces/Contentfull';
 
 import Layout from '../componenets/Layout/Layout';
 
 import styles from '../styles/SobreNos.module.css';
 
-interface Props {
-  image: ContentfullAsset;
-  content: {
-    content: string;
-    contentSignature: string;
-    teamImage: {
-      sys: any;
-      fields: {
-        title: string;
-        file: {
-          url: string;
-          details: Object;
-          fileName: string;
-          contentType: string;
-        };
-      };
-    };
-  };
-}
-
-export default function sobre_nos({ image, content }: Props) {
+export default function sobre_nos({ image, content }: ContentfullSobreNos) {
   return (
     <>
       <Layout image={image}>

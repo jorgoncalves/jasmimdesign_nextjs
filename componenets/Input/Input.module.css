@@ -1,0 +1,30 @@
+.label {
+  display: block;
+  font-size: 0.8rem;
+  margin: 0.5rem 0 0.3rem;
+}
+
+.input {
+  width: 11.5rem;
+}
+
+.textarea {
+  width: 27rem;
+  height: 8rem;
+  resize: none;
+}
+
+.input,
+.textarea {
+  font-family: monospace;
+  border: 1.5px solid;
+  border-color: #dddddd;
+  border-radius: 1.5px;
+  padding: 0.4rem;
+}
+
+.input:focus,
+.textarea:focus {
+  outline: none;
+  box-shadow: 1.5px 1.5px 3px 1.5px #dddddd;
+}

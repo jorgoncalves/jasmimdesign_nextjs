@@ -1,0 +1,146 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  min-height: 100%;
+}
+
+.imageContainer {
+  width: 60%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+}
+
+.imageContainer img {
+  max-width: 85%;
+  max-height: 85%;
+  transition: 0.3s;
+}
+.imageContainer img:hover {
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+.imageContainer> div:nth-child(1) {
+    text-align: end;
+}
+.imageContainer>div:nth-child(2) {
+ text-align: start;
+}
+.imageContainer>div:nth-child(3) {
+  text-align: end;
+}
+.imageContainer>div:nth-child(4) {
+  text-align: start;
+}
+
+.formContainer {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+}
+
+.heading {
+  font-family: 'Dawning of a New Day', cursive;
+  font-size: 3.5rem;
+  font-weight: 600;
+  margin: 0;
+  color: #6e8799;
+}
+
+.subHeading {
+  color: #808080;
+  font-size: 1rem;
+  margin: 16px 0;
+}
+
+.formGroup {
+  margin: 3rem 0;
+}
+
+.contactsGroup {
+}
+
+.contactsLabel {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 0.2rem;
+  display: block;
+  margin: 1.67rem 0 0.2rem 0;
+}
+
+.contactsAnchor {
+  display: block;
+  font-size: 0.9rem;
+  color: #808080;
+  text-decoration: none;
+  cursor: pointer;
+  width: fit-content;
+  padding: 0.5rem 0 0;
+}
+
+/* Checkbox */
+
+.consentimentoContainer {
+  margin: 0.5rem 0 0.3rem;
+}
+
+.span_consentimento {
+  /* display: inline-block; */
+  font-size: 13px;
+  margin: 0 0 0 0.3rem;
+}
+.check_consentimento {
+  /* display: inline-block; */
+  width: fit-content;
+}
+.check_consentimento {
+  position: absolute;
+  opacity: 0;
+}
+.check_consentimento + .check_consentimento_style {
+  position: relative;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+}
+/* Box. */
+.check_consentimento + .check_consentimento_style::before {
+  content: '';
+  /* margin-right: 10px; */
+  display: inline-block;
+  vertical-align: middle;
+  border: 1.5px solid #dddddd;
+  border-radius: 1.5px;
+  background: white;
+  width: 20px;
+  height: 20px;
+}
+
+.check_consentimento:disabled + .check_consentimento_style:before {
+  border-radius: 0%;
+  border: none;
+  background: #f7f7f7;
+}
+.check_consentimento:checked + .check_consentimento_style::before {
+  cursor: default;
+}
+/* Checkmark. Could be replaced with an image */
+.check_consentimento:checked + .check_consentimento_style::after {
+  content: '\2713';
+  text-align: center;
+  margin: auto;
+  position: absolute;
+  left: 0px;
+  right: 0;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: default !important;
+}

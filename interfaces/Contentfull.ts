@@ -7,3 +7,38 @@ export interface ContentfullAsset {
     contentType: string;
   };
 }
+
+export interface ContentfullAssetInEntry {
+  sys: any;
+  fields: {
+    title: string;
+    file: {
+      url: string;
+      details: Object;
+      fileName: string;
+      contentType: string;
+    };
+  };
+}
+
+export interface ContentfullContactos {
+  image: ContentfullAsset;
+  slug: string;
+  images: [
+    ContentfullAssetInEntry,
+    ContentfullAssetInEntry,
+    ContentfullAssetInEntry,
+    ContentfullAssetInEntry
+  ];
+  heading: string;
+  subHeading: string;
+}
+
+export interface ContentfullSobreNos {
+  image: ContentfullAsset;
+  content: {
+    content: string;
+    contentSignature: string;
+    teamImage: ContentfullAssetInEntry;
+  };
+}

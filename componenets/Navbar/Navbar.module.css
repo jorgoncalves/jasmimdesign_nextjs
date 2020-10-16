@@ -12,7 +12,14 @@
 }
 
 .navbar_container ul li {
+  text-transform: uppercase;
   list-style-type: none;
   cursor: pointer;
-  padding: 0 40px;
+  padding: 0.5rem 2rem;
+  color: #262626;
+  transition: 0.4s;
+}
+
+.navbar_container ul li:hover {
+  background: #d7be97;
 }

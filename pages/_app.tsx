@@ -3,6 +3,9 @@ import { motion } from 'framer-motion';
 
 import '@fortawesome/fontawesome-free/js/all.js';
 
+import 'uikit/dist/css/uikit.min.css';
+import 'uikit/dist/js/uikit';
+
 import '../styles/globals.css';
 
 function MyApp({ Component, pageProps, router }: AppProps) {

@@ -20,17 +20,17 @@ export default function Layout({ children, image }: Props) {
     <div>
       <Head>
         <title>{title}</title>
-        <link rel='icon' href='/jasmim-favicon.png' />
-        <meta charSet='utf-8' />
-        <meta name='viewport' content='initial-scale=1.0, width=device-width' />
+        <link rel="icon" href="/jasmim-favicon.png" />
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <link
-          href='https://fonts.googleapis.com/css?family=Dawning+of+a+New+Day|Numans&display=swap'
-          rel='stylesheet'
+          href="https://fonts.googleapis.com/css?family=Dawning+of+a+New+Day|Numans&display=swap"
+          rel="stylesheet"
         />
       </Head>
       <header>
         <Banner {...image} />
-        <Navbar />
+        <Navbar {...image}/>
       </header>
       <div className={styles.layoutContainer}>{children}</div>
       <Footer />

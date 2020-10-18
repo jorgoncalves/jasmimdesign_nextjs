@@ -13,7 +13,9 @@ interface Props {
 export default function Home({ image }: Props) {
   return (
     <>
-      <Layout image={image}> </Layout>
+      <Layout image={image}>
+        <span uk-icon="heart"></span>
+      </Layout>
     </>
   );
 }

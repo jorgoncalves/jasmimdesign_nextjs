@@ -17,9 +17,3 @@ a {
 * {
   box-sizing: border-box;
 }
-
-
-.uk-lightbox{
-  background: #000;
-  opacity: 0.3;
-}

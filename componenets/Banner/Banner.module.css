@@ -1,4 +1,4 @@
-.banner_container{
+.banner_container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -8,4 +8,13 @@
 
 .banner_container img {
     transform: scale(0.7);
+}
+
+.bannerSidenav_container{
+    margin: 17px ;
+}
+
+.bannerSidenav_container img {
+    min-height: 65px;
+    max-height: 65px;
 }

@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import Banner from '../Banner/Banner';
+import BannerSidenav from '../Banner/BannerSidenav';
 
 import { ContentfullAsset } from '../../interfaces/Contentfull';
 
@@ -39,8 +39,8 @@ export default function Navbar({ title, file }: ContentfullAsset) {
      </nav> */}
       <header>
         {/* Main Navbar  */}
-        <nav className="uk-container uk-navbar">
-          <div className="uk-navbar-center">
+        <nav className=" uk-navbar uk-width-1-1">
+          <div className="uk-navbar-center uk-flex uk-flex-center uk-width-1-1">
             <ul className="uk-navbar-nav uk-visible@s">
               {pages.map((page, index) => (
                 <li key={index}>
@@ -50,24 +50,22 @@ export default function Navbar({ title, file }: ContentfullAsset) {
                 </li>
               ))}
             </ul>
-            {/* <div className="uk-hidden@s"> */}
-            <Banner {...{ title, file }} />
-            {/* </div> */}
-            <a
-              href="#"
-              className="uk-navbar-toggle uk-hidden@s"
-              uk-navbar-toggle-icon="true"
-              uk-toggle="target: #sidenav"
-            ></a>
+            <div className={styles.navbar_mobile + ' uk-hidden@s uk-flex uk-flex-between uk-width-1-1'}>
+              <BannerSidenav {...{ title, file }} />
+              <a
+                href="#"
+                className="uk-navbar-toggle uk-hidden@s"
+                uk-navbar-toggle-icon="true"
+                onClick={sidenavShowHandler}
+              ></a>
+            </div>
           </div>
         </nav>
       </header>
 
-      <div id="sidenav" 
-      uk-offcanvas="flip: true"
-       className="uk-offcanvas">
-        <div className="uk-offcanvas-bar uk-flex uk-flex-column">
-          <button className="uk-offcanvas-close" type="button" uk-close="true"></button>
+      <div id="sidenav" className={styles.sidenav}>
+        <div className={styles.offcanvas_custom + ' uk-flex uk-flex-column'}>
+          <button className="uk-offcanvas-close" type="button" uk-close="true" onClick={sidenavHideHandler}></button>
           <ul className="uk-nav uk-nav-primary uk-nav-center uk-margin-auto-vertical">
             {pages.map((page, index) => (
               <li key={index} className="uk-margin">
@@ -83,3 +81,17 @@ export default function Navbar({ title, file }: ContentfullAsset) {
     </>
   );
 }
+
+const sidenavShowHandler = () => {
+  const sidenav = document.getElementById('sidenav') as HTMLDivElement;
+  sidenav.style.display = 'block';
+  sidenav.style.animationName = 'fadeIn';
+};
+
+const sidenavHideHandler = () => {
+  const sidenav = document.getElementById('sidenav') as HTMLDivElement;
+  sidenav.style.animationName = 'fadeOut';
+  setTimeout(() => {
+    sidenav.style.display = 'none';
+  }, 400);
+};

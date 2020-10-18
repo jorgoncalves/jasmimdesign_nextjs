@@ -15,7 +15,7 @@ import '../styles/uikit-custom.css';
 function MyApp({ Component, pageProps, router }: AppProps) {
   return (
     <>
-      <motion.div
+      {/* <motion.div
         key={router.route}
         initial="pageInitial"
         animate="pageAnimate"
@@ -27,11 +27,11 @@ function MyApp({ Component, pageProps, router }: AppProps) {
             opacity: 1
           }
         }}
-      >
+      > */}
         <UIkit>
           <Component {...pageProps} />
         </UIkit>
-      </motion.div>
+      {/* </motion.div> */}
     </>
   );
 }

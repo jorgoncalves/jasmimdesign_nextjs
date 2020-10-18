@@ -9,62 +9,11 @@
 }
 
 .uk-close>svg {
-  color: #5f5f5f;
+  color: #999;
 }
 
-.uk-offcanvas-flip .uk-offcanvas-bar-animation {
-  transition-property: none !important;
-  transition: all ease 1s;
-  /* -webkit-animation-name: fadeIn;
-  -webkit-animation-duration: 0.4s;
-  animation-name: fadeIn;
-  animation-duration: 0.4s; */
-}
-
-/* 
-@-webkit-keyframes fadeIn {
-  from {
-    opacity: 0
-  }
-
-  to {
-    opacity: 1
+@media only screen and (max-width:640px) {
+  .uk-navbar {
+    height: 99px;
   }
 }
-
-@keyframes fadeIn {
-  from {
-    opacity: 0
-  }
-
-  to {
-    opacity: 1
-  }
-}
-
-.uk-offcanvas-bar-animation {
-  -webkit-animation-name: fadeOut;
-  -webkit-animation-duration: 0.4s;
-  animation-name: fadeOut;
-  animation-duration: 0.4s;
-}
-
-@-webkit-keyframes fadeOut {
-  from {
-    opacity: 1
-  }
-
-  to {
-    opacity: 0
-  }
-}
-
-@keyframes fadeOut {
-  from {
-    opacity: 1
-  }
-
-  to {
-    opacity: 0
-  }
-} */

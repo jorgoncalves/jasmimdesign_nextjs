@@ -12,6 +12,13 @@
   color: #999;
 }
 
+.uk-offcanvas-close{
+  top: 40px;
+  right: 14px;
+  transform: scale(1.5);
+}
+
+
 @media only screen and (max-width:640px) {
   .uk-navbar {
     height: 99px;

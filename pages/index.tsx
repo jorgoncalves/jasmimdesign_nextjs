@@ -14,7 +14,10 @@ export default function Home({ image }: Props) {
   return (
     <>
       <Layout image={image}>
-        <span uk-icon="heart"></span>
+        <div className="uk-flex uk-flex-column uk-flex-center" uk-height-viewport="expand: true">
+          <h1>Em desenvolvimento!</h1>
+          <h2>Teremos novidades em breve!</h2>
+        </div>
       </Layout>
     </>
   );

@@ -12,6 +12,7 @@ export interface ContentfullAssetInEntry {
   sys: any;
   fields: {
     title: string;
+    description?: string;
     file: {
       url: string;
       details: Object;
@@ -24,14 +25,10 @@ export interface ContentfullAssetInEntry {
 export interface ContentfullContactos {
   image: ContentfullAsset;
   slug: string;
-  images: [
-    ContentfullAssetInEntry,
-    ContentfullAssetInEntry,
-    ContentfullAssetInEntry,
-    ContentfullAssetInEntry
-  ];
+  images: [ContentfullAssetInEntry, ContentfullAssetInEntry, ContentfullAssetInEntry, ContentfullAssetInEntry];
   heading: string;
   subHeading: string;
+  button: string;
 }
 
 export interface ContentfullSobreNos {

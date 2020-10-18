@@ -83,12 +83,16 @@ export default function Navbar({ title, file }: ContentfullAsset) {
 }
 
 const sidenavShowHandler = () => {
+  const layoutContainer = document.getElementById('layout-container') as HTMLDivElement;
+  layoutContainer.style.display = 'none';
   const sidenav = document.getElementById('sidenav') as HTMLDivElement;
   sidenav.style.display = 'block';
   sidenav.style.animationName = 'fadeIn';
 };
 
 const sidenavHideHandler = () => {
+  const layoutContainer = document.getElementById('layout-container') as HTMLDivElement;
+  layoutContainer.style.display = 'flex';
   const sidenav = document.getElementById('sidenav') as HTMLDivElement;
   sidenav.style.animationName = 'fadeOut';
   setTimeout(() => {

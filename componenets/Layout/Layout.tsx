@@ -32,7 +32,7 @@ export default function Layout({ children, image }: Props) {
         <Banner {...image} />
         <Navbar {...image}/>
       </header>
-      <div className={styles.layoutContainer}>{children}</div>
+      <div id="layout-container" className={styles.layoutContainer}>{children}</div>
       <Footer />
     </div>
   );

@@ -85,6 +85,8 @@ export default function Navbar({ title, file }: ContentfullAsset) {
 const sidenavShowHandler = () => {
   const layoutContainer = document.getElementById('layout-container') as HTMLDivElement;
   layoutContainer.style.display = 'none';
+  const footerContainer = document.getElementById('footer-container') as HTMLDivElement;
+  footerContainer.style.visibility = 'hidden';
   const sidenav = document.getElementById('sidenav') as HTMLDivElement;
   sidenav.style.display = 'block';
   sidenav.style.animationName = 'fadeIn';
@@ -93,9 +95,11 @@ const sidenavShowHandler = () => {
 const sidenavHideHandler = () => {
   const layoutContainer = document.getElementById('layout-container') as HTMLDivElement;
   layoutContainer.style.display = 'flex';
+  const footerContainer = document.getElementById('footer-container') as HTMLDivElement;
+  footerContainer.style.visibility = 'visible';
   const sidenav = document.getElementById('sidenav') as HTMLDivElement;
   sidenav.style.animationName = 'fadeOut';
   setTimeout(() => {
     sidenav.style.display = 'none';
-  }, 400);
+  }, 500);
 };

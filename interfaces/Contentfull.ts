@@ -29,6 +29,8 @@ export interface ContentfullContactos {
   heading: string;
   subHeading: string;
   button: string;
+  labelMarketing:string;
+  labelContacto:string;
 }
 
 export interface ContentfullSobreNos {

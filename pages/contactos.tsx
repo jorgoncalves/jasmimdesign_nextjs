@@ -92,7 +92,7 @@ export default function Contactos({
               Email: inputEmail.current!.value,
               Mobile: inputTelemovel.current!.value,
               Description: inputMensagem.current!.value,
-              Email_Opt_Out: inputMarketing.current!.value 
+              Email_Opt_Out: inputMarketing.current!.checked 
             }
           });
           location.href = '/obrigado';

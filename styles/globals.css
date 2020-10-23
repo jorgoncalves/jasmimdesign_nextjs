@@ -19,8 +19,9 @@ a {
 }
 
 .invalide {
-  border-color: #ff999986 !important;
-  box-shadow: 1.5px 1.5px 3px 1.5px #ff9999 !important;
+  border-color: #ff999981 !important;
+  
+  box-shadow: 1px 1px 3px 1px #ff9999a4 !important;
 }
 
 

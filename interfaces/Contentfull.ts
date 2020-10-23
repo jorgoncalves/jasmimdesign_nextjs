@@ -1,3 +1,7 @@
+interface ContentfullBase {
+  image: ContentfullAsset;
+  slug: string;
+}
 export interface ContentfullAsset {
   title: string;
   file: {
@@ -22,22 +26,24 @@ export interface ContentfullAssetInEntry {
   };
 }
 
-export interface ContentfullContactos {
-  image: ContentfullAsset;
-  slug: string;
+export interface ContentfullContactos extends ContentfullBase {
   images: [ContentfullAssetInEntry, ContentfullAssetInEntry, ContentfullAssetInEntry, ContentfullAssetInEntry];
   heading: string;
   subHeading: string;
   button: string;
-  labelMarketing:string;
-  labelContacto:string;
+  labelMarketing: string;
+  labelContacto: string;
 }
 
-export interface ContentfullSobreNos {
+export interface ContentfullSobreNos extends ContentfullBase {
   image: ContentfullAsset;
   content: {
     content: string;
     contentSignature: string;
     teamImage: ContentfullAssetInEntry;
   };
+}
+
+export interface ContentfullObrigado extends ContentfullBase {
+  content: string;
 }

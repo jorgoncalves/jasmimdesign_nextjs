@@ -43,6 +43,7 @@ export default function Contactos({
   const inputTelemovel = useRef<HTMLInputElement>(null);
   const inputMensagem = useRef<HTMLTextAreaElement>(null);
   const inputMarketing = useRef<HTMLInputElement>(null);
+  const btnSubmit = useRef<HTMLButtonElement>(null);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [telemovel, setTelemovel] = useState('');
@@ -50,37 +51,68 @@ export default function Contactos({
   const [Email_Opt_Out, setEmail_Opt_Out] = useState(false);
 
   const inputHanlder = (id: string, e: React.ChangeEvent<HTMLInputElement>) => {
-    if (id === 'email' && (ValidateEmail(e.target.value) || e.target.value === '')) {
+    // if (id === 'name') setName(e.target.value);
+    // if (id === 'telemovel') setTelemovel(e.target.value);
+    // if (id === 'mensagem') setMensagem(e.target.value);
+    // if (id === 'marketing' && e.target.value === 'on') setEmail_Opt_Out(false);
+    // else if (id === 'marketing') setEmail_Opt_Out(true);
+    // else
+    e.target.classList.remove('invalide');
+  };
+
+  const blurHandler = (id: string, e: React.ChangeEvent<HTMLInputElement>) => {
+    if (
+      (id === 'email' && (ValidateEmail(e.target.value) || e.target.value === '')) ||
+      id === 'telemovel' ||
+      id === 'name'
+    ) {
       e.target.classList.remove('invalide');
     } else if (id === 'email' && !ValidateEmail(e.target.value)) {
       e.target.classList.add('invalide');
-    } else e.target.classList.remove('invalide');
-    if (id === 'name') setName(e.target.value);
-    if (id === 'email') setEmail(e.target.value);
-    if (id === 'telemovel') setTelemovel(e.target.value);
-    if (id === 'mensagem') setMensagem(e.target.value);
-    if (id === 'marketing' && e.target.value === 'on') setEmail_Opt_Out(false);
-    else if (id === 'marketing') setEmail_Opt_Out(true);
-    console.log(e.target.value);
-    console.log(inputMarketing);
+    }
   };
 
   const submitHandler = async () => {
     try {
-      console.log('inputName', inputName.current?.value);
-      console.log('inputEmail', inputEmail.current?.value);
-      console.log('inputTelemovel', inputTelemovel.current?.value);
-      console.log('inputMensagem', inputMensagem.current?.value);
       // fazer blink aos invalids caso hajam
-      if (name && (email || telemovel))
-        await axios('/api/mongodb', {
-          method: 'POST',
-          data: { Lead_Source: 'Site', Last_Name: name, Email: email, Mobile: telemovel }
-        });
+      if (inputName.current!.value && (inputEmail.current!.value || inputTelemovel.current!.value))
+        try {
+          inputName.current!.disabled = true;
+          inputEmail.current!.disabled = true;
+          inputTelemovel.current!.disabled = true;
+          inputMensagem.current!.disabled = true;
+          inputMarketing.current!.disabled = true;
+          console.log(inputMarketing.current!.checked);
+          
+          await axios('/api/insert', {
+            method: 'POST',
+            data: {
+              Lead_Source: 'Site',
+              Last_Name: inputName.current!.value,
+              Email: inputEmail.current!.value,
+              Mobile: inputTelemovel.current!.value,
+              Description: inputMensagem.current!.value,
+              Email_Opt_Out: inputMarketing.current!.value 
+            }
+          });
+          location.href = '/obrigado';
+        } catch (error) {
+          console.log(error);
+          inputName.current!.disabled = false;
+          inputEmail.current!.disabled = false;
+          inputTelemovel.current!.disabled = false;
+          inputMensagem.current!.disabled = false;
+          inputMarketing.current!.checked = false;
+        }
       else {
+        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+          window.scroll({
+            top: document.getElementById('name')!.getBoundingClientRect().top + window.scrollY - 150,
+            behavior: 'smooth'
+          });
+        }
         inputName.current?.classList.add('invalide');
         inputEmail.current?.classList.add('invalide');
-        inputTelemovel.current?.classList.add('invalide');
       }
     } catch (error) {
       console.log(error);
@@ -109,15 +141,36 @@ export default function Contactos({
             <span className={styles.heading}>{heading}</span>
             <span className={styles.subHeading}>{subHeading}</span>
             <div className={styles.formGroup}>
-              <Input id="name" label="Nome" type="text" onChange={inputHanlder} useRef={inputName} />
-              <Input id="email" label="Email" type="email" onChange={inputHanlder} useRef={inputEmail} />
-              <Input id="telemovel" label="Telemóvel" type="number" onChange={inputHanlder} useRef={inputTelemovel} />
+              <Input
+                id="name"
+                label="Nome"
+                type="text"
+                onChange={inputHanlder}
+                useRef={inputName}
+                onBlur={blurHandler}
+              />
+              <Input
+                id="email"
+                label="Email"
+                type="email"
+                onChange={inputHanlder}
+                useRef={inputEmail}
+                onBlur={blurHandler}
+              />
+              <Input
+                id="telemovel"
+                label="Telemóvel"
+                type="number"
+                onChange={inputHanlder}
+                useRef={inputTelemovel}
+                onBlur={blurHandler}
+              />
               <Input id="mensagem" label="Mensagem" type="textarea" onChange={inputHanlder} useRef={inputMensagem} />
-              <div className={styles.consentimentoContainer}>
+              {/* <div className={styles.consentimentoContainer}>
                 <input className={styles.check_consentimento} type="checkbox" name="consentimento" id="consentimento" />
                 <label className={styles.check_consentimento_style} htmlFor="consentimento"></label>
                 <span className={styles.span_consentimento}>{labelContacto}</span>
-              </div>
+              </div> */}
               <div className={styles.consentimentoContainer}>
                 <input
                   className={styles.check_consentimento}
@@ -130,7 +183,7 @@ export default function Contactos({
                 <label className={styles.check_consentimento_style} htmlFor="marketing"></label>
                 <span className={styles.span_consentimento}>{labelMarketing}</span>
               </div>
-              <button className={styles.btn} onClick={submitHandler}>
+              <button className={styles.btn} ref={btnSubmit} onClick={submitHandler}>
                 {button}
               </button>
             </div>

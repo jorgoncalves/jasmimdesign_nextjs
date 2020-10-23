@@ -10,11 +10,13 @@ interface Props {
   image: ContentfullAsset;
 }
 
+import style from '../styles/Home.module.css';
+
 export default function Home({ image }: Props) {
   return (
     <>
       <Layout image={image}>
-        <div className="uk-flex uk-flex-column uk-flex-center" uk-height-viewport="expand: true">
+        <div className={style.content}>
           <h1>Em desenvolvimento!</h1>
           <h2>Teremos novidades em breve!</h2>
         </div>

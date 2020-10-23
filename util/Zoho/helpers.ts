@@ -36,7 +36,7 @@ export const createRecord = async (module_api_name: string, access_token: string
       },
       data: { data: [data] }
     });
-    console.log(resp.data);
+    console.log(resp.data.data);
 
     return resp;
   } catch (error) {

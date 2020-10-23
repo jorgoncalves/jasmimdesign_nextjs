@@ -1,0 +1,11 @@
+.content {
+  line-height: 2.5rem;
+  font-size: 1.7rem;
+  white-space: pre-wrap;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex: 1;
+}

@@ -20,10 +20,14 @@ a {
 
 .invalide {
   border-color: #ff999981 !important;
-  
   box-shadow: 1px 1px 3px 1px #ff9999a4 !important;
 }
 
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
 
 @-webkit-keyframes fadeIn {
   from {

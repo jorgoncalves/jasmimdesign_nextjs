@@ -7,7 +7,8 @@ export default function Input({
   onChange,
   type = 'text',
   useRef,
-  onBlur
+  onBlur,
+  disabled
 }: {
   label: string;
   id: string;
@@ -15,6 +16,7 @@ export default function Input({
   type?: string;
   useRef?: any;
   onBlur?: any;
+  disabled: boolean;
 }) {
   const blur = onBlur ?? (() => {});
   const change = onChange ?? (() => {});
@@ -32,9 +34,16 @@ export default function Input({
           id={id}
           onChange={(e) => change(id, e)}
           onBlur={(e) => blur(id, e) || {}}
+          disabled={disabled}
         />
       ) : (
-        <textarea ref={useRef} className={styles.textarea} id={id} onChange={(e) => change(id, e)} />
+        <textarea
+          ref={useRef}
+          className={styles.textarea}
+          id={id}
+          onChange={(e) => change(id, e)}
+          disabled={disabled}
+        />
       )}
     </div>
   );

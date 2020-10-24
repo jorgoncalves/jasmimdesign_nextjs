@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import axios from 'axios';
 
-import { GetStaticProps } from 'next';
+import { GetStaticProps, GetServerSideProps } from 'next';
 import { fechtEntry, fechtAsset } from '../libs/api';
 
 import { ContentfullAsset, ContentfullContactos } from '../interfaces/Contentfull';
@@ -21,6 +21,7 @@ export default function Contactos({
   labelMarketing,
   labelContacto
 }: ContentfullContactos) {
+  const [loading, setLoading] = useState(false);
   const contacts = [
     {
       label: 'Email',
@@ -51,12 +52,6 @@ export default function Contactos({
   const [Email_Opt_Out, setEmail_Opt_Out] = useState(false);
 
   const inputHanlder = (id: string, e: React.ChangeEvent<HTMLInputElement>) => {
-    // if (id === 'name') setName(e.target.value);
-    // if (id === 'telemovel') setTelemovel(e.target.value);
-    // if (id === 'mensagem') setMensagem(e.target.value);
-    // if (id === 'marketing' && e.target.value === 'on') setEmail_Opt_Out(false);
-    // else if (id === 'marketing') setEmail_Opt_Out(true);
-    // else
     e.target.classList.remove('invalide');
   };
 
@@ -74,16 +69,11 @@ export default function Contactos({
 
   const submitHandler = async () => {
     try {
-      // fazer blink aos invalids caso hajam
       if (inputName.current!.value && (inputEmail.current!.value || inputTelemovel.current!.value))
         try {
-          inputName.current!.disabled = true;
-          inputEmail.current!.disabled = true;
-          inputTelemovel.current!.disabled = true;
-          inputMensagem.current!.disabled = true;
-          inputMarketing.current!.disabled = true;
+          setLoading(true);
           console.log(inputMarketing.current!.checked);
-          
+
           await axios('/api/insert', {
             method: 'POST',
             data: {
@@ -92,17 +82,13 @@ export default function Contactos({
               Email: inputEmail.current!.value,
               Mobile: inputTelemovel.current!.value,
               Description: inputMensagem.current!.value,
-              Email_Opt_Out: inputMarketing.current!.checked 
+              Email_Opt_Out: !inputMarketing.current!.checked
             }
           });
           location.href = '/obrigado';
         } catch (error) {
           console.log(error);
-          inputName.current!.disabled = false;
-          inputEmail.current!.disabled = false;
-          inputTelemovel.current!.disabled = false;
-          inputMensagem.current!.disabled = false;
-          inputMarketing.current!.checked = false;
+          setLoading(false);
         }
       else {
         if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
@@ -148,6 +134,7 @@ export default function Contactos({
                 onChange={inputHanlder}
                 useRef={inputName}
                 onBlur={blurHandler}
+                disabled={loading}
               />
               <Input
                 id="email"
@@ -156,6 +143,7 @@ export default function Contactos({
                 onChange={inputHanlder}
                 useRef={inputEmail}
                 onBlur={blurHandler}
+                disabled={loading}
               />
               <Input
                 id="telemovel"
@@ -164,8 +152,16 @@ export default function Contactos({
                 onChange={inputHanlder}
                 useRef={inputTelemovel}
                 onBlur={blurHandler}
+                disabled={loading}
               />
-              <Input id="mensagem" label="Mensagem" type="textarea" onChange={inputHanlder} useRef={inputMensagem} />
+              <Input
+                id="mensagem"
+                label="Mensagem"
+                type="textarea"
+                onChange={inputHanlder}
+                useRef={inputMensagem}
+                disabled={loading}
+              />
               {/* <div className={styles.consentimentoContainer}>
                 <input className={styles.check_consentimento} type="checkbox" name="consentimento" id="consentimento" />
                 <label className={styles.check_consentimento_style} htmlFor="consentimento"></label>
@@ -179,13 +175,17 @@ export default function Contactos({
                   id="marketing"
                   ref={inputMarketing}
                   onChange={(e) => inputHanlder('marketing', e)}
+                  disabled={loading}
                 />
                 <label className={styles.check_consentimento_style} htmlFor="marketing"></label>
                 <span className={styles.span_consentimento}>{labelMarketing}</span>
               </div>
-              <button className={styles.btn} ref={btnSubmit} onClick={submitHandler}>
-                {button}
-              </button>
+              <div className={styles.btnContainer}>
+                <button className={styles.btn} ref={btnSubmit} onClick={submitHandler} disabled={loading}>
+                  {button}
+                </button>
+                {/* {loading ? <div uk-spinner={'true'} className={styles.loader}></div> : <></>} */}
+              </div>
             </div>
             {contacts.map((contact, index) => {
               return (

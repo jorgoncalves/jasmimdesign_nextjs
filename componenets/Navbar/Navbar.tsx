@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import BannerSidenav from '../Banner/BannerSidenav';
+import { useRouter } from 'next/router';
 
 import { ContentfullAsset } from '../../interfaces/Contentfull';
 
@@ -16,39 +17,30 @@ export default function Navbar({ title, file }: ContentfullAsset) {
     { label: 'Sobre nós', link: '/sobre-nos' },
     { label: 'Contactos', link: '/contactos' }
   ];
+  const router = useRouter();
   return (
     <>
-      {/* <nav className={styles.navbar_container}>
-       <ul>
-         <li>
-           <Link href='/'>
-             <span>Home</span>
-           </Link>
-         </li>
-         <li>
-           <Link href='/sobre-nos'>
-             <span>Sobre nós</span>
-           </Link>
-         </li>
-         <li>
-           <Link href='/contactos'>
-             <span>Contactos</span>
-           </Link>
-         </li>
-       </ul>
-     </nav> */}
       <header>
-        {/* Main Navbar  */}
         <nav className=" uk-navbar uk-width-1-1">
           <div className="uk-navbar-center uk-flex uk-flex-center uk-width-1-1">
             <ul className="uk-navbar-nav uk-visible@s">
-              {pages.map((page, index) => (
-                <li key={index}>
-                  <Link href={page.link}>
-                    <span className={styles.navbar_link}>{page.label}</span>
-                  </Link>
-                </li>
-              ))}
+              {pages.map((page, index) => {
+                // const locationStyle = {
+                //   fontWeight: router.pathname === page.link ? 600 : 400
+                // };
+                return (
+                  <li key={index}>
+                    <Link href={page.link}>
+                      <span
+                        className={styles.navbar_link}
+                        // style={locationStyle}
+                      >
+                        {page.label}
+                      </span>
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
             <div className={styles.navbar_mobile + ' uk-hidden@s uk-flex uk-flex-between uk-width-1-1'}>
               <BannerSidenav {...{ title, file }} />

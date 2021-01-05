@@ -16,10 +16,10 @@ export default function Home({ image }: Props) {
   return (
     <>
       <Layout image={image}>
-        <div className={style.content}>
+        {/* <div className={style.content}> */}
           <h1>Em desenvolvimento!</h1>
-          <h2>Teremos novidades em breve!</h2>
-        </div>
+          <h3>Teremos novidades em breve!</h3>
+        {/* </div> */}
       </Layout>
     </>
   );

@@ -17,7 +17,7 @@ interface Props {
 export default function Layout({ children, image }: Props) {
   const title = 'Jasmimdesign';
   return (
-    <div>
+    <>
       <Head>
         <title>{title}</title>
         <link rel="icon" href="/jasmim-favicon.png" />
@@ -34,6 +34,6 @@ export default function Layout({ children, image }: Props) {
       </header>
       <div id="layout-container" className={styles.layoutContainer}>{children}</div>
       <Footer />
-    </div>
+    </>
   );
 }

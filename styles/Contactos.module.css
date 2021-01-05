@@ -187,8 +187,8 @@
 
 @media only screen and (max-device-width:768px) {
   .container {
-    flex-direction: row;
-    min-height: calc(100vh - 99px - 100px);
+    flex-direction: column;
+    /* min-height: calc(100vh - 99px - 100px); */
     width: 100%;
   }
 
@@ -218,7 +218,7 @@
 @media only screen and (max-device-width:640px) {
   .container {
     flex-direction: column;
-    min-height: calc(100vh - 99px - 100px);
+    /* min-height: calc(100vh - 99px - 100px); */
     width: 100%;
   }
 

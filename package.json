@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.1",
+    "@types/gtag.js": "0.0.4",
     "@types/moment": "^2.13.0",
     "@types/mongodb": "^3.5.28",
     "@types/mongoose": "^5.7.36",

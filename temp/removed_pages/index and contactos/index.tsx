@@ -1,3 +1,4 @@
+export {}
 // import { GetStaticProps } from 'next';
 
 // import Layout from '../componenets/Layout/Layout';

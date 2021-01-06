@@ -10,6 +10,7 @@ import { GA_TRACKING_ID } from '../../util/gtag';
 import { ContentfullAsset } from '../../interfaces/Contentfull';
 
 import styles from './Layout.module.css';
+import { useEffect, useRef } from 'react';
 
 interface Props {
     children: any;
@@ -17,6 +18,24 @@ interface Props {
 }
 
 export default function Layout({ children, image }: Props) {
+    const ref = useRef(null);
+    useEffect(() => {
+        const layoutContainer = ref.current! as HTMLDivElement;
+        console.log(layoutContainer.clientHeight);
+        console.log(window.innerHeight);
+
+        if (
+            layoutContainer.clientHeight < window.innerHeight &&
+            /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+        ) {
+            layoutContainer.style.height = window.innerHeight - 200 + 'px';
+        }
+        // const obrigadoContainer = document.getElementById('obrigado-container') as HTMLDivElement;
+        // console.log(obrigadoContainer);
+
+        // obrigadoContainer.style.height = window.innerHeight.toString();
+    }, []);
+
     const title = 'Jasmimdesign';
     return (
         <>
@@ -54,7 +73,7 @@ export default function Layout({ children, image }: Props) {
                 <Banner {...image} />
                 <Navbar {...image} />
             </header>
-            <div id="layout-container" className={styles.layoutContainer}>
+            <div id="layout-container" ref={ref} className={styles.layoutContainer}>
                 {children}
             </div>
             <Footer />

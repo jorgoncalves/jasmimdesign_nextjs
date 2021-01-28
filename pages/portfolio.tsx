@@ -42,7 +42,9 @@ export default function Portfolio({image, imagesGroups}: ContentfullPortfolio) {
                                                             image.fields != null
                                                         )
                                                             return (
-                                                                <li className="">
+                                                                <li
+                                                                    className=""
+                                                                    key={i}>
                                                                     <div className="uk-panel">
                                                                         <a
                                                                             href={

@@ -2,7 +2,7 @@ import React from 'react';
 import Layout from '../componenets/Layout/Layout';
 
 import { GetStaticProps } from 'next';
-import { fechtEntry, fechtAsset } from '../libs/api';
+import { fetchEntry, fetchAsset } from '../libs/api';
 
 import { ContentfullAsset, ContentfullObrigado } from '../interfaces/Contentfull';
 
@@ -21,8 +21,8 @@ export default function obrigado({ image, content }: ContentfullObrigado) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-    let image = (await fechtAsset('g4yjeOZJUv67QmnbD39Mw')) as ContentfullAsset;
-    let content = (await fechtEntry('1SD5VG7fBVgo01gqiAJnCi')) as {};
+    let image = (await fetchAsset('g4yjeOZJUv67QmnbD39Mw')) as ContentfullAsset;
+    let content = (await fetchEntry('1SD5VG7fBVgo01gqiAJnCi')) as {};
     console.log(content);
 
     return { props: { image: image, ...content } };

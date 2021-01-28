@@ -21,12 +21,11 @@ export default function Layout({ children, image }: Props) {
     const ref = useRef(null);
     useEffect(() => {
         const layoutContainer = ref.current! as HTMLDivElement;
-        console.log(layoutContainer.clientHeight);
-        console.log(window.innerHeight);
-
         if (
             layoutContainer.clientHeight < window.innerHeight &&
-            /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+            /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+                navigator.userAgent
+            )
         ) {
             layoutContainer.style.height = window.innerHeight - 200 + 'px';
         }
@@ -43,17 +42,26 @@ export default function Layout({ children, image }: Props) {
                 <title>{title}</title>
                 <link rel="icon" href="/jasmim-favicon.png" />
                 <meta charSet="utf-8" />
-                <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+                <meta
+                    name="viewport"
+                    content="initial-scale=1.0, width=device-width"
+                />
                 <link
                     href="https://fonts.googleapis.com/css?family=Dawning+of+a+New+Day|Numans&display=swap"
                     rel="stylesheet"
                 />
                 {/* Pinterest */}
-                <meta name="p:domain_verify" content="d66fb6e2823ccfc6f578fb18a1f6341d" />
+                <meta
+                    name="p:domain_verify"
+                    content="d66fb6e2823ccfc6f578fb18a1f6341d"
+                />
                 {process.env.NODE_ENV === 'production' ? (
                     // Global Site Tag (gtag.js) - Google Analytics
                     <>
-                        <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`} />
+                        <script
+                            async
+                            src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
+                        />
                         <script
                             dangerouslySetInnerHTML={{
                                 __html: `
@@ -73,7 +81,11 @@ export default function Layout({ children, image }: Props) {
                 <Banner {...image} />
                 <Navbar {...image} />
             </header>
-            <div id="layout-container" ref={ref} className={styles.layoutContainer}>
+            <div
+                id="layout-container"
+                ref={ref}
+                className={styles.layoutContainer}
+            >
                 {children}
             </div>
             <Footer />

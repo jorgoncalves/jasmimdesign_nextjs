@@ -1,5 +1,5 @@
 import { GetStaticProps } from 'next';
-import { fechtEntry, fechtAsset } from '../libs/api';
+import { fetchEntry, fetchAsset } from '../libs/api';
 
 import {
   ContentfullAsset,
@@ -35,8 +35,8 @@ export default function sobre_nos({ image, content }: ContentfullSobreNos) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  let image = (await fechtAsset('g4yjeOZJUv67QmnbD39Mw')) as ContentfullAsset;
-  let content = await fechtEntry('7p3vZDcjHQY2RY0Gujyw23');
+  let image = (await fetchAsset('g4yjeOZJUv67QmnbD39Mw')) as ContentfullAsset;
+  let content = await fetchEntry('7p3vZDcjHQY2RY0Gujyw23');
   console.log(content);
 
   return { props: { image: image, content } };

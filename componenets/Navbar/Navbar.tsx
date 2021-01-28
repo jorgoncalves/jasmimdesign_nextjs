@@ -14,6 +14,7 @@ interface Pages {
 export default function Navbar({ title, file }: ContentfullAsset) {
     const pages: Pages[] = [
         // { label: 'Home', link: '/' },
+        { label: 'Portfólio', link: '/portfolio' },
         { label: 'Sobre nós', link: '/sobre-nos' },
         // { label: 'Contactos', link: '/contactos' }
         { label: 'Contactos', link: '/' }
@@ -43,7 +44,12 @@ export default function Navbar({ title, file }: ContentfullAsset) {
                                 );
                             })}
                         </ul>
-                        <div className={styles.navbar_mobile + ' uk-hidden@s uk-flex uk-flex-between uk-width-1-1'}>
+                        <div
+                            className={
+                                styles.navbar_mobile +
+                                ' uk-hidden@s uk-flex uk-flex-between uk-width-1-1'
+                            }
+                        >
                             <BannerSidenav {...{ title, file }} />
                             <a
                                 href="#"
@@ -57,7 +63,11 @@ export default function Navbar({ title, file }: ContentfullAsset) {
             </header>
 
             <div id="sidenav" className={styles.sidenav}>
-                <div className={styles.offcanvas_custom + ' uk-flex uk-flex-column'}>
+                <div
+                    className={
+                        styles.offcanvas_custom + ' uk-flex uk-flex-column'
+                    }
+                >
                     <button
                         className="uk-offcanvas-close"
                         type="button"
@@ -68,10 +78,17 @@ export default function Navbar({ title, file }: ContentfullAsset) {
                         {pages.map((page, index) => (
                             <li key={index} className="uk-margin">
                                 <Link href={page.link}>
-                                    <span className={styles.navbar_link}>{page.label}</span>
+                                    <span className={styles.navbar_link}>
+                                        {page.label}
+                                    </span>
                                 </Link>
                                 {pages.length - 1 > index ? (
-                                    <div className={styles.divider + ' uk-nav-divider uk-margin'}></div>
+                                    <div
+                                        className={
+                                            styles.divider +
+                                            ' uk-nav-divider uk-margin'
+                                        }
+                                    ></div>
                                 ) : null}
                             </li>
                         ))}
@@ -83,9 +100,13 @@ export default function Navbar({ title, file }: ContentfullAsset) {
 }
 
 const sidenavShowHandler = () => {
-    const layoutContainer = document.getElementById('layout-container') as HTMLDivElement;
+    const layoutContainer = document.getElementById(
+        'layout-container'
+    ) as HTMLDivElement;
     layoutContainer.style.display = 'none';
-    const footerContainer = document.getElementById('footer-container') as HTMLDivElement;
+    const footerContainer = document.getElementById(
+        'footer-container'
+    ) as HTMLDivElement;
     footerContainer.style.visibility = 'hidden';
     const sidenav = document.getElementById('sidenav') as HTMLDivElement;
     sidenav.style.display = 'block';
@@ -93,9 +114,13 @@ const sidenavShowHandler = () => {
 };
 
 const sidenavHideHandler = () => {
-    const layoutContainer = document.getElementById('layout-container') as HTMLDivElement;
+    const layoutContainer = document.getElementById(
+        'layout-container'
+    ) as HTMLDivElement;
     layoutContainer.style.display = 'flex';
-    const footerContainer = document.getElementById('footer-container') as HTMLDivElement;
+    const footerContainer = document.getElementById(
+        'footer-container'
+    ) as HTMLDivElement;
     footerContainer.style.visibility = 'visible';
     const sidenav = document.getElementById('sidenav') as HTMLDivElement;
     sidenav.style.animationName = 'fadeOut';

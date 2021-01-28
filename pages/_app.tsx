@@ -17,7 +17,7 @@ import { useEffect } from 'react';
 function MyApp({ Component, pageProps, router }: AppProps) {
     useEffect(() => {
         const handleRouteChange = (url: URL) => {
-            gtag.pageview(url);
+            if (process.env.NODE_ENV === 'production') gtag.pageview(url);
         };
         router.events.on('routeChangeComplete', handleRouteChange);
         return () => {

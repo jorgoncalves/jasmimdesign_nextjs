@@ -2,9 +2,12 @@ import React, { useState, useRef } from 'react';
 import axios from 'axios';
 
 import { GetStaticProps, GetServerSideProps } from 'next';
-import { fechtEntry, fechtAsset } from '../libs/api';
+import { fetchEntry, fetchAsset } from '../libs/api';
 
-import { ContentfullAsset, ContentfullContactos } from '../interfaces/Contentfull';
+import {
+    ContentfullAsset,
+    ContentfullContactos
+} from '../interfaces/Contentfull';
 
 import Layout from '../componenets/Layout/Layout';
 import Input from '../componenets/Input/Input';
@@ -47,19 +50,21 @@ export default function Contactos({
     const inputMensagem = useRef<HTMLTextAreaElement>(null);
     const inputMarketing = useRef<HTMLInputElement>(null);
     const btnSubmit = useRef<HTMLButtonElement>(null);
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [telemovel, setTelemovel] = useState('');
-    const [mensagem, setMensagem] = useState('');
-    const [Email_Opt_Out, setEmail_Opt_Out] = useState(false);
 
-    const inputHanlder = (id: string, e: React.ChangeEvent<HTMLInputElement>) => {
+    const inputHanlder = (
+        id: string,
+        e: React.ChangeEvent<HTMLInputElement>
+    ) => {
         e.target.classList.remove('invalide');
     };
 
-    const blurHandler = (id: string, e: React.ChangeEvent<HTMLInputElement>) => {
+    const blurHandler = (
+        id: string,
+        e: React.ChangeEvent<HTMLInputElement>
+    ) => {
         if (
-            (id === 'email' && (ValidateEmail(e.target.value) || e.target.value === '')) ||
+            (id === 'email' &&
+                (ValidateEmail(e.target.value) || e.target.value === '')) ||
             id === 'telemovel' ||
             id === 'name'
         ) {
@@ -71,7 +76,10 @@ export default function Contactos({
 
     const submitHandler = async () => {
         try {
-            if (inputName.current!.value && (inputEmail.current!.value || inputTelemovel.current!.value))
+            if (
+                inputName.current!.value &&
+                (inputEmail.current!.value || inputTelemovel.current!.value)
+            )
                 try {
                     setLoading(true);
                     console.log(inputMarketing.current!.checked);
@@ -93,9 +101,18 @@ export default function Contactos({
                     setLoading(false);
                 }
             else {
-                if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                if (
+                    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+                        navigator.userAgent
+                    )
+                ) {
                     window.scroll({
-                        top: document.getElementById('name')!.getBoundingClientRect().top + window.scrollY - 150,
+                        top:
+                            document
+                                .getElementById('name')!
+                                .getBoundingClientRect().top +
+                            window.scrollY -
+                            150,
                         behavior: 'smooth'
                     });
                 }
@@ -116,10 +133,16 @@ export default function Contactos({
         <>
             <Layout image={image}>
                 <div className={styles.container}>
-                    <div className={styles.imageContainer} uk-lightbox="animation: slide">
+                    <div
+                        className={styles.imageContainer}
+                        uk-lightbox="animation: slide"
+                    >
                         {images.map((image, index) => (
                             <div key={index}>
-                                <a href={image.fields.file.url} data-caption={image.fields.description}>
+                                <a
+                                    href={image.fields.file.url}
+                                    data-caption={image.fields.description}
+                                >
                                     <img src={image.fields.file.url} />
                                 </a>
                             </div>
@@ -171,11 +194,18 @@ export default function Contactos({
                                     name="marketing"
                                     id="marketing"
                                     ref={inputMarketing}
-                                    onChange={(e) => inputHanlder('marketing', e)}
+                                    onChange={(e) =>
+                                        inputHanlder('marketing', e)
+                                    }
                                     disabled={loading}
                                 />
-                                <label className={styles.check_consentimento_style} htmlFor="marketing"></label>
-                                <span className={styles.span_consentimento}>{labelMarketing}</span>
+                                <label
+                                    className={styles.check_consentimento_style}
+                                    htmlFor="marketing"
+                                ></label>
+                                <span className={styles.span_consentimento}>
+                                    {labelMarketing}
+                                </span>
                             </div>
                             <div className={styles.btnContainer}>
                                 <button
@@ -186,14 +216,21 @@ export default function Contactos({
                                 >
                                     {button}
                                 </button>
-                                {/* {loading ? <div uk-spinner={'true'} className={styles.loader}></div> : <></>} */}
                             </div>
                         </div>
                         {contacts.map((contact, index) => {
                             return (
-                                <div className={styles.contactsGroup} key={index}>
-                                    <span className={styles.contactsLabel}>{contact.label}</span>
-                                    <a className={styles.contactsAnchor} href={contact.value}>
+                                <div
+                                    className={styles.contactsGroup}
+                                    key={index}
+                                >
+                                    <span className={styles.contactsLabel}>
+                                        {contact.label}
+                                    </span>
+                                    <a
+                                        className={styles.contactsAnchor}
+                                        href={contact.value}
+                                    >
                                         {contact.shown}
                                     </a>
                                 </div>
@@ -207,8 +244,8 @@ export default function Contactos({
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-    let image = (await fechtAsset('g4yjeOZJUv67QmnbD39Mw')) as ContentfullAsset;
-    let content = (await fechtEntry('3p0FQbL4yYnRwnHegblsPC')) as {};
+    let image = (await fetchAsset('g4yjeOZJUv67QmnbD39Mw')) as ContentfullAsset;
+    let content = (await fetchEntry('3p0FQbL4yYnRwnHegblsPC')) as {};
     console.log(content);
 
     return { props: { image: image, ...content } };

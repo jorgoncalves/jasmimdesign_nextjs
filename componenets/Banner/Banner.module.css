@@ -12,7 +12,9 @@
 }
 
 .banner_container img {
-    transform: scale(0.8);
+    /* transform: scale(0.8); */
+    max-height: 230px;
+    min-height: 230px;
 }
 
 .bannerSidenav_container {

@@ -22,13 +22,13 @@ export default function Portfolio({image, imagesGroups}: ContentfullPortfolio) {
                         {imagesGroups.map((group, index) => (
                             <div
                                 key={index}
-                                className={index != 0 ? 'uk-margin-top' : ''}>
-                                <h6
+                                className={index != 0 ? 'uk-margin-large-top' : ''}>
+                                <span
                                     className={
-                                        styles.groupHeader + ' uk-heading-small'
+                                        styles.groupHeader + ''
                                     }>
                                     {group.name}
-                                </h6>
+                                </span>
 
                                 <div uk-slider="true">
                                     <div className="uk-position-relative">

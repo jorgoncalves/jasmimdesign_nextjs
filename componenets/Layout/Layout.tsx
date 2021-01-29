@@ -78,8 +78,8 @@ export default function Layout({ children, image }: Props) {
                 ) : null}
             </Head>
             <header>
-                <Banner {...image} />
                 <Navbar {...image} />
+                <Banner {...image} />
             </header>
             <div
                 id="layout-container"

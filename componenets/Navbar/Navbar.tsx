@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import BannerSidenav from '../Banner/BannerSidenav';
-import { useRouter } from 'next/router';
+import {useRouter} from 'next/router';
 
-import { ContentfullAsset } from '../../interfaces/Contentfull';
+import {ContentfullAsset} from '../../interfaces/Contentfull';
 
 import styles from './Navbar.module.css';
 
@@ -11,21 +11,25 @@ interface Pages {
     link: string;
 }
 
-export default function Navbar({ title, file }: ContentfullAsset) {
+export default function Navbar({title, file}: ContentfullAsset) {
     const pages: Pages[] = [
         // { label: 'Home', link: '/' },
-        { label: 'Portfólio', link: '/portfolio' },
-        { label: 'Sobre nós', link: '/sobre-nos' },
+        {label: 'Portfólio', link: '/portfolio'},
+        {label: 'Sobre nós', link: '/sobre-nos'},
         // { label: 'Contactos', link: '/contactos' }
-        { label: 'Contactos', link: '/' }
+        {label: 'Contactos', link: '/'},
     ];
     const router = useRouter();
     return (
         <>
-            <header>
-                <nav className=" uk-navbar uk-width-1-1">
-                    <div className="uk-navbar-center uk-flex uk-flex-center uk-width-1-1">
-                        <ul className="uk-navbar-nav uk-visible@s">
+            <header className={true ? styles.nav_header_container : ''}>
+                <nav className={styles.nav_custom + ' uk-navbar'}>
+                    <div className="">
+                        <ul
+                            className={
+                                styles.nav_border +
+                                ' uk-navbar-nav uk-visible@s'
+                            }>
                             {pages.map((page, index) => {
                                 // const locationStyle = {
                                 //   fontWeight: router.pathname === page.link ? 600 : 400
@@ -47,16 +51,17 @@ export default function Navbar({ title, file }: ContentfullAsset) {
                         <div
                             className={
                                 styles.navbar_mobile +
-                                ' uk-hidden@s uk-flex uk-flex-between uk-width-1-1'
-                            }
-                        >
-                            <BannerSidenav {...{ title, file }} />
+                                ' uk-hidden@s uk-flex uk-flex-center uk-width-1-1'
+                            }>
+                            <BannerSidenav {...{title, file}} />
                             <a
                                 href="#"
-                                className="uk-navbar-toggle uk-hidden@s"
+                                className={
+                                    styles.hamburger +
+                                    ' uk-navbar-toggle uk-hidden@s'
+                                }
                                 uk-navbar-toggle-icon="true"
-                                onClick={sidenavShowHandler}
-                            ></a>
+                                onClick={sidenavShowHandler}></a>
                         </div>
                     </div>
                 </nav>
@@ -66,14 +71,12 @@ export default function Navbar({ title, file }: ContentfullAsset) {
                 <div
                     className={
                         styles.offcanvas_custom + ' uk-flex uk-flex-column'
-                    }
-                >
+                    }>
                     <button
                         className="uk-offcanvas-close"
                         type="button"
                         uk-close="true"
-                        onClick={sidenavHideHandler}
-                    ></button>
+                        onClick={sidenavHideHandler}></button>
                     <ul className="uk-nav uk-nav-primary uk-nav-center uk-margin-auto-vertical">
                         {pages.map((page, index) => (
                             <li key={index} className="uk-margin">
@@ -87,8 +90,7 @@ export default function Navbar({ title, file }: ContentfullAsset) {
                                         className={
                                             styles.divider +
                                             ' uk-nav-divider uk-margin'
-                                        }
-                                    ></div>
+                                        }></div>
                                 ) : null}
                             </li>
                         ))}

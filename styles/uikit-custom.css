@@ -1,26 +1,23 @@
 .uk-lightbox {
-  background: #000;
-  opacity: 0.3;
+    background: #000;
+    opacity: 0.3;
 }
 
 .uk-offcanvas-bar {
-  width: 100vw;
-  background: #fff;
+    width: 100vw;
+    background: #fff;
 }
 
-.uk-close>svg {
-  color: #999;
+.uk-close > svg {
+    color: #bab6b1;
 }
-
-.uk-offcanvas-close{
-  top: 40px;
-  right: 14px;
-  transform: scale(1.5);
+.uk-offcanvas-close {
+    /* top: 40px;*/
+    right: 25px;
+    transform: scale(1.5);
 }
-
-
-@media only screen and (max-width:640px) {
-  .uk-navbar {
-    height: 99px;
-  }
+@media only screen and (max-width: 640px) {
+    .uk-navbar {
+        height: 99px;
+    }
 }

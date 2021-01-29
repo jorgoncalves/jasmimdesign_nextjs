@@ -20,6 +20,7 @@ function MyApp({ Component, pageProps, router }: AppProps) {
             if (process.env.NODE_ENV === 'production') gtag.pageview(url);
         };
         router.events.on('routeChangeComplete', handleRouteChange);
+        
         return () => {
             router.events.off('routeChangeComplete', handleRouteChange);
         };

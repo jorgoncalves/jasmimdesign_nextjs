@@ -5,35 +5,36 @@ import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/Footer';
 import Banner from '../Banner/Banner';
 
-import { GA_TRACKING_ID } from '../../util/gtag';
+import {GA_TRACKING_ID} from '../../util/gtag';
 
-import { ContentfullAsset } from '../../interfaces/Contentfull';
+import {ContentfullAsset} from '../../interfaces/Contentfull';
 
 import styles from './Layout.module.css';
-import { useEffect, useRef } from 'react';
+import {useEffect, useRef} from 'react';
 
 interface Props {
     children: any;
     image: ContentfullAsset;
 }
 
-export default function Layout({ children, image }: Props) {
+export default function Layout({children, image}: Props) {
     const ref = useRef(null);
     useEffect(() => {
         const layoutContainer = ref.current! as HTMLDivElement;
+        console.log(children);
+
         if (
             layoutContainer.clientHeight < window.innerHeight &&
             /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
                 navigator.userAgent
-            )
+            ) &&
+            !children.props.className.includes('Portfolio')
         ) {
             layoutContainer.style.height = window.innerHeight - 200 + 'px';
+        } else {
+            layoutContainer.style.height = 'unset';
         }
-        // const obrigadoContainer = document.getElementById('obrigado-container') as HTMLDivElement;
-        // console.log(obrigadoContainer);
-
-        // obrigadoContainer.style.height = window.innerHeight.toString();
-    }, []);
+    }, [children]);
 
     const title = 'Jasmimdesign';
     return (
@@ -71,7 +72,7 @@ export default function Layout({ children, image }: Props) {
                     gtag('config', '${GA_TRACKING_ID}', {
                         page_path: window.location.pathname,
                     });
-                    `
+                    `,
                             }}
                         />
                     </>
@@ -84,8 +85,7 @@ export default function Layout({ children, image }: Props) {
             <div
                 id="layout-container"
                 ref={ref}
-                className={styles.layoutContainer}
-            >
+                className={styles.layoutContainer}>
                 {children}
             </div>
             <Footer />

@@ -1,3 +1,7 @@
+.imageContainer{
+    height: inherit;
+}
+
 .groupHeader {
     /* font-family: 'Dawning of a New Day', cursive; */
     font-size: 1.3rem;

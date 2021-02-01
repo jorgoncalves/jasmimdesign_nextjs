@@ -12,7 +12,7 @@
     display: flex;
     justify-content: center;
     background-color: #fff;
-    z-index: 10000;
+    z-index: 100;
     padding: 8px 0;
     /* border: 1px solid #ddd; */
     border-left: none;
@@ -68,13 +68,13 @@
     border-left: none;
     border-right: none;
     border-top: none;
-    z-index: 1000;
+    z-index: 100;
 }
 
 .sidenav {
     display: none;
     position: absolute;
-    z-index: 1000;
+    z-index: 100;
     background: #fff;
     width: 100vw;
     top: 0;

@@ -5,12 +5,12 @@
     align-items: flex-start;
     width: 100vw;
     min-height: 100%;
-    padding-top: 30px;
+    /* padding-top: 30px; */
 }
 
 .imageContainer {
     width: 60%;
-    margin-top: 13px;
+    /* margin-top: 13px; */
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto;

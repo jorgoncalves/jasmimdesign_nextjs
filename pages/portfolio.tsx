@@ -17,16 +17,15 @@ export default function Portfolio({image, imagesGroups}: ContentfullPortfolio) {
     return (
         <>
             <Layout image={image}>
-                <div className={styles.container}>
+                {/* <div className={styles.container}> */}
                     <div className={styles.imageContainer}>
                         {imagesGroups.map((group, index) => (
                             <div
                                 key={index}
-                                className={index != 0 ? 'uk-margin-large-top' : ''}>
-                                <span
-                                    className={
-                                        styles.groupHeader + ''
-                                    }>
+                                className={
+                                    index != 0 ? 'uk-margin-large-top' : ''
+                                }>
+                                <span className={styles.groupHeader + ''}>
                                     {group.name}
                                 </span>
 
@@ -106,7 +105,7 @@ export default function Portfolio({image, imagesGroups}: ContentfullPortfolio) {
                             </div>
                         ))}
                     </div>
-                </div>
+                {/* </div> */}
             </Layout>
         </>
     );

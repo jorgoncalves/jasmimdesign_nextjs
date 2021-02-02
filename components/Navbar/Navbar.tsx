@@ -2,7 +2,7 @@ import Link from 'next/link';
 import BannerSidenav from '../Banner/BannerSidenav';
 import {useRouter} from 'next/router';
 
-import {ContentfullAsset} from '../../interfaces/Contentfull';
+import {ContentfullBase} from '../../interfaces/Contentfull';
 
 import styles from './Navbar.module.css';
 
@@ -11,7 +11,11 @@ interface Pages {
     link: string;
 }
 
-export default function Navbar({title, file}: ContentfullAsset) {
+export default function Navbar({
+    image,
+    logo_522x230,
+    logo_159x70,
+}: ContentfullBase) {
     const pages: Pages[] = [
         // { label: 'Home', link: '/' },
         {label: 'Portfólio', link: '/portfolio'},
@@ -31,16 +35,11 @@ export default function Navbar({title, file}: ContentfullAsset) {
                                 ' uk-navbar-nav uk-visible@s'
                             }>
                             {pages.map((page, index) => {
-                                // const locationStyle = {
-                                //   fontWeight: router.pathname === page.link ? 600 : 400
-                                // };
                                 return (
                                     <li key={index}>
                                         <Link href={page.link}>
                                             <span
-                                                className={styles.navbar_link}
-                                                // style={locationStyle}
-                                            >
+                                                className={styles.navbar_link}>
                                                 {page.label}
                                             </span>
                                         </Link>
@@ -53,7 +52,8 @@ export default function Navbar({title, file}: ContentfullAsset) {
                                 styles.navbar_mobile +
                                 ' uk-hidden@s uk-flex uk-flex-center uk-width-1-1'
                             }>
-                            <BannerSidenav {...{title, file}} />
+                            {console.log(logo_159x70)}
+                            <BannerSidenav {...logo_159x70!} />
                             <a
                                 href="#"
                                 className={

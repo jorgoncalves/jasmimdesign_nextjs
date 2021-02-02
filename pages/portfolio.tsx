@@ -6,105 +6,108 @@ import {fetchContentType, fetchAsset, fetchEntry} from '../libs/api';
 import {
     ContentfullAsset,
     ContentfullAssetInEntry,
+    ContentfullLogos,
     ContentfullPortfolio,
 } from '../interfaces/Contentfull';
 
-import Layout from '../componenets/Layout/Layout';
+import Layout from '../components/Layout/Layout';
 
 import styles from '../styles/Portfolio.module.css';
 
-export default function Portfolio({image, imagesGroups}: ContentfullPortfolio) {
+export default function Portfolio({
+    image,
+    imagesGroups,
+    logo_159x70,
+    logo_522x230,
+}: ContentfullPortfolio) {
     return (
         <>
-            <Layout image={image}>
+            <Layout
+                image={image}
+                logo_522x230={logo_522x230}
+                logo_159x70={logo_159x70}>
                 {/* <div className={styles.container}> */}
-                    <div className={styles.imageContainer}>
-                        {imagesGroups.map((group, index) => (
-                            <div
-                                key={index}
-                                className={
-                                    index != 0 ? 'uk-margin-large-top' : ''
-                                }>
-                                <span className={styles.groupHeader + ''}>
-                                    {group.name}
-                                </span>
+                <div className={styles.imageContainer}>
+                    {imagesGroups.map((group, index) => (
+                        <div
+                            key={index}
+                            className={index != 0 ? 'uk-margin-large-top' : ''}>
+                            <span className={styles.groupHeader + ''}>
+                                {group.name}
+                            </span>
 
-                                <div uk-slider="true">
-                                    <div className="uk-position-relative">
-                                        <div className="uk-slider-container uk-light">
-                                            <ul
-                                                className="uk-slider-items uk-child-width-1-1 uk-child-width-1-3@m uk-grid uk-grid-small"
-                                                uk-lightbox="animation: slide">
-                                                {group.images?.map(
-                                                    (image, i) => {
-                                                        if (
-                                                            image.fields != null
-                                                        )
-                                                            return (
-                                                                <li
-                                                                    className=""
-                                                                    key={i}>
-                                                                    <div className="uk-panel">
-                                                                        <a
-                                                                            href={
-                                                                                image
-                                                                                    .fields
-                                                                                    .file
-                                                                                    .url
-                                                                            }
-                                                                            data-caption={
-                                                                                image
-                                                                                    .fields
-                                                                                    .description
-                                                                            }>
-                                                                            <img
-                                                                                src={
-                                                                                    image
-                                                                                        .fields
-                                                                                        .file
-                                                                                        .url
-                                                                                }
-                                                                                alt=""
-                                                                            />
-                                                                        </a>
-                                                                    </div>
-                                                                </li>
-                                                            );
-                                                    }
-                                                )}
-                                            </ul>
-                                        </div>
-                                        <div className="uk-hidden@s uk-light">
-                                            <a
-                                                className="uk-position-center-left uk-position-small"
-                                                href="#"
-                                                uk-slidenav-previous="true"
-                                                uk-slider-item="previous"></a>
-                                            <a
-                                                className="uk-position-center-right uk-position-small"
-                                                href="#"
-                                                uk-slidenav-next="true"
-                                                uk-slider-item="next"></a>
-                                        </div>
-                                        <div className="uk-visible@s">
-                                            <a
-                                                className="uk-position-center-left-out uk-position-small"
-                                                href="#"
-                                                uk-slidenav-previous="true"
-                                                uk-slider-item="previous"></a>
-                                            <a
-                                                className="uk-position-center-right-out uk-position-small"
-                                                href="#"
-                                                uk-slidenav-next="true"
-                                                uk-slider-item="next"></a>
+                            <div uk-slider="true">
+                                <div className="uk-position-relative">
+                                    <div className="uk-slider-container uk-light">
+                                        <ul
+                                            className="uk-slider-items uk-child-width-1-1 uk-child-width-1-3@m uk-grid uk-grid-small"
+                                            uk-lightbox="animation: slide">
+                                            {group.images?.map((image, i) => {
+                                                if (image.fields != null)
+                                                    return (
+                                                        <li
+                                                            className=""
+                                                            key={i}>
+                                                            <div className="uk-panel">
+                                                                <a
+                                                                    href={
+                                                                        image
+                                                                            .fields
+                                                                            .file
+                                                                            .url
+                                                                    }
+                                                                    data-caption={
+                                                                        image
+                                                                            .fields
+                                                                            .description
+                                                                    }>
+                                                                    <img
+                                                                        src={
+                                                                            image
+                                                                                .fields
+                                                                                .file
+                                                                                .url
+                                                                        }
+                                                                        alt=""
+                                                                    />
+                                                                </a>
+                                                            </div>
+                                                        </li>
+                                                    );
+                                            })}
+                                        </ul>
+                                    </div>
+                                    <div className="uk-hidden@s uk-light">
+                                        <a
+                                            className="uk-position-center-left uk-position-small"
+                                            href="#"
+                                            uk-slidenav-previous="true"
+                                            uk-slider-item="previous"></a>
+                                        <a
+                                            className="uk-position-center-right uk-position-small"
+                                            href="#"
+                                            uk-slidenav-next="true"
+                                            uk-slider-item="next"></a>
+                                    </div>
+                                    <div className="uk-visible@s">
+                                        <a
+                                            className="uk-position-center-left-out uk-position-small"
+                                            href="#"
+                                            uk-slidenav-previous="true"
+                                            uk-slider-item="previous"></a>
+                                        <a
+                                            className="uk-position-center-right-out uk-position-small"
+                                            href="#"
+                                            uk-slidenav-next="true"
+                                            uk-slider-item="next"></a>
 
-                                            {/* <ul className="uk-slider-nav uk-dotnav uk-flex-center uk-margin"></ul> */}
-                                        </div>
+                                        {/* <ul className="uk-slider-nav uk-dotnav uk-flex-center uk-margin"></ul> */}
                                     </div>
                                 </div>
                             </div>
-                        ))}
-                    </div>
+                        </div>
+                    ))}
+                </div>
                 {/* </div> */}
             </Layout>
         </>
@@ -136,5 +139,19 @@ export const getStaticProps: GetStaticProps = async () => {
         }
     });
 
-    return {props: {image: image, imagesGroups: tempImages}};
+    let logo_content = (await fetchEntry(
+        '5afhTCYqzTm2nJdZuOWMKh'
+    )) as ContentfullLogos;
+    const logo_522x230 = logo_content.jasmimLogo522x230.fields;
+    const logo_159x70 = logo_content.jasmimLogo159x70.fields;
+    console.log(logo_522x230);
+
+    return {
+        props: {
+            image: image,
+            imagesGroups: tempImages,
+            logo_522x230,
+            logo_159x70,
+        },
+    };
 };

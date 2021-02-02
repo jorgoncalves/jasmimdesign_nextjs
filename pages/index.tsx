@@ -1,16 +1,17 @@
-import React, { useState, useRef } from 'react';
+import React, {useState, useRef} from 'react';
 import axios from 'axios';
 
-import { GetStaticProps, GetServerSideProps } from 'next';
-import { fetchEntry, fetchAsset } from '../libs/api';
+import {GetStaticProps, GetServerSideProps} from 'next';
+import {fetchEntry, fetchAsset} from '../libs/api';
 
 import {
     ContentfullAsset,
-    ContentfullContactos
+    ContentfullContactos,
+    ContentfullLogos,
 } from '../interfaces/Contentfull';
 
-import Layout from '../componenets/Layout/Layout';
-import Input from '../componenets/Input/Input';
+import Layout from '../components/Layout/Layout';
+import Input from '../components/Input/Input';
 
 import styles from '../styles/Contactos.module.css';
 
@@ -24,25 +25,27 @@ export default function Contactos({
     subHeading,
     button,
     labelMarketing,
-    labelContacto
+    labelContacto,
+    logo_159x70,
+    logo_522x230,
 }: ContentfullContactos) {
     const [loading, setLoading] = useState(false);
     const contacts = [
         {
             label: 'Email',
             value: 'jasmimdesign@gmail.com',
-            shown: 'jasmimdesign@gmail.com'
+            shown: 'jasmimdesign@gmail.com',
         },
         {
             label: 'Facebook',
             value: 'https://facebook.com/jasmimdesign/',
-            shown: 'facebook.com/jasmimdesign/'
+            shown: 'facebook.com/jasmimdesign/',
         },
         {
             label: 'Instagram',
             value: 'https://www.instagram.com/jasmimdesign/',
-            shown: 'instagram.com/jasmimdesign/'
-        }
+            shown: 'instagram.com/jasmimdesign/',
+        },
     ];
     const inputName = useRef<HTMLInputElement>(null);
     const inputEmail = useRef<HTMLInputElement>(null);
@@ -92,8 +95,8 @@ export default function Contactos({
                             Email: inputEmail.current!.value,
                             Mobile: inputTelemovel.current!.value,
                             Description: inputMensagem.current!.value,
-                            Email_Opt_Out: !inputMarketing.current!.checked
-                        }
+                            Email_Opt_Out: !inputMarketing.current!.checked,
+                        },
                     });
                     location.href = '/obrigado';
                 } catch (error) {
@@ -113,7 +116,7 @@ export default function Contactos({
                                 .getBoundingClientRect().top +
                             window.scrollY -
                             150,
-                        behavior: 'smooth'
+                        behavior: 'smooth',
                     });
                 }
                 inputName.current?.classList.add('invalide');
@@ -131,18 +134,19 @@ export default function Contactos({
     }
     return (
         <>
-            <Layout image={image}>
+            <Layout
+                image={image}
+                logo_522x230={logo_522x230}
+                logo_159x70={logo_159x70}>
                 <div className={styles.container}>
                     <div
                         className={styles.imageContainer}
-                        uk-lightbox="animation: slide"
-                    >
+                        uk-lightbox="animation: slide">
                         {images.map((image, index) => (
                             <div key={index}>
                                 <a
                                     href={image.fields.file.url}
-                                    data-caption={image.fields.description}
-                                >
+                                    data-caption={image.fields.description}>
                                     <img src={image.fields.file.url} />
                                 </a>
                             </div>
@@ -201,8 +205,7 @@ export default function Contactos({
                                 />
                                 <label
                                     className={styles.check_consentimento_style}
-                                    htmlFor="marketing"
-                                ></label>
+                                    htmlFor="marketing"></label>
                                 <span className={styles.span_consentimento}>
                                     {labelMarketing}
                                 </span>
@@ -212,8 +215,7 @@ export default function Contactos({
                                     className={styles.btn}
                                     ref={btnSubmit}
                                     onClick={submitHandler}
-                                    disabled={loading}
-                                >
+                                    disabled={loading}>
                                     {button}
                                 </button>
                             </div>
@@ -222,15 +224,13 @@ export default function Contactos({
                             return (
                                 <div
                                     className={styles.contactsGroup}
-                                    key={index}
-                                >
+                                    key={index}>
                                     <span className={styles.contactsLabel}>
                                         {contact.label}
                                     </span>
                                     <a
                                         className={styles.contactsAnchor}
-                                        href={contact.value}
-                                    >
+                                        href={contact.value}>
                                         {contact.shown}
                                     </a>
                                 </div>
@@ -248,5 +248,12 @@ export const getStaticProps: GetStaticProps = async () => {
     let content = (await fetchEntry('3p0FQbL4yYnRwnHegblsPC')) as {};
     console.log(content);
 
-    return { props: { image: image, ...content } };
+    let logo_content = (await fetchEntry(
+        '5afhTCYqzTm2nJdZuOWMKh'
+    )) as ContentfullLogos;
+    const logo_522x230 = logo_content.jasmimLogo522x230.fields;
+    const logo_159x70 = logo_content.jasmimLogo159x70.fields;
+    console.log(logo_522x230);
+
+    return {props: {image, logo_522x230, logo_159x70, ...content}};
 };

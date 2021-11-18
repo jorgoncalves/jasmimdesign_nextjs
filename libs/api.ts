@@ -10,7 +10,9 @@ export async function fetchEntry(param: string) {
 
         return entry.fields;
     } catch (error) {
-        throw new Error(error);
+        if (error instanceof Error)
+            throw new Error(error.message);
+        else throw new Error(`Something went wrong: ${error}`);
     }
 }
 
@@ -23,7 +25,9 @@ export async function fetchAsset(param: string) {
         const entry = await client.getAsset(param);
         return entry.fields;
     } catch (error) {
-        throw new Error(error);
+        if (error instanceof Error)
+            throw new Error(error.message);
+        else throw new Error(`Something went wrong: ${error}`);
     }
 }
 
@@ -37,6 +41,8 @@ export async function fetchContentType(param: string) {
 
         return entry;
     } catch (error) {
-        throw new Error(error);
+        if (error instanceof Error)
+            throw new Error(error.message);
+        else throw new Error(`Something went wrong: ${error}`);
     }
 }

@@ -22,6 +22,7 @@ export default function Contactos({
     images,
     slug,
     subHeading,
+    subHeaderAlternative,
     button,
     labelMarketing,
     labelContacto
@@ -34,15 +35,15 @@ export default function Contactos({
             shown: 'jasmimdesign@gmail.com'
         },
         {
+            label: 'Instagram',
+            value: 'https://www.instagram.com/jasmimdesign/',
+            shown: 'instagram.com/jasmimdesign/'
+        },
+        {
             label: 'Facebook',
             value: 'https://facebook.com/jasmimdesign/',
             shown: 'facebook.com/jasmimdesign/'
         },
-        {
-            label: 'Instagram',
-            value: 'https://www.instagram.com/jasmimdesign/',
-            shown: 'instagram.com/jasmimdesign/'
-        }
     ];
     const inputName = useRef<HTMLInputElement>(null);
     const inputEmail = useRef<HTMLInputElement>(null);
@@ -150,8 +151,9 @@ export default function Contactos({
                     </div>
                     <div className={styles.formContainer}>
                         <span className={styles.heading}>{heading}</span>
-                        <span className={styles.subHeading}>{subHeading}</span>
-                        <div className={styles.formGroup}>
+                        <span className={styles.subHeading}>{subHeaderAlternative}</span>
+                        {/* <span className={styles.subHeading}>{subHeading}</span> */}
+                        {/* <div className={styles.formGroup} hidden>
                             <Input
                                 id="name"
                                 label="Nome"
@@ -217,7 +219,7 @@ export default function Contactos({
                                     {button}
                                 </button>
                             </div>
-                        </div>
+                        </div> */}
                         {contacts.map((contact, index) => {
                             return (
                                 <div

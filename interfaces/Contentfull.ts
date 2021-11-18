@@ -35,6 +35,7 @@ export interface ContentfullContactos extends ContentfullBase {
     ];
     heading: string;
     subHeading: string;
+    subHeaderAlternative: string;
     button: string;
     labelMarketing: string;
     labelContacto: string;
